@@ -64,7 +64,7 @@ class M3UImporterScreen(Screen):
 		self.bouquet_rootstr = ""
 		self.boxchannels = {}
 
-		self["lab1"] = Label()
+		self["lab2"] = Label()
 		
 		self["progress"] = ProgressBar()
 		self["progress"].setRange((0, 100))
@@ -104,7 +104,7 @@ class M3UImporterScreen(Screen):
 	
 	def keyStart(self):
 
-		if not self.propertys.has_key("m3ufile"):
+		if "m3ufile" not in self.propertys:
 			self["lab2"].setText("m3u file not defnined .. see /etc/enigma2/M3UImporter.conf")
 			return
 
@@ -115,7 +115,7 @@ class M3UImporterScreen(Screen):
 
 		boxepgimport = []
 		
-		if self.propertys.has_key("boxepgimport"):
+		if "boxepgimport" in self.propertys:
 			boxepgimport = self.propertys["boxepgimport"]
 
 #		self.JobImport()
@@ -151,7 +151,7 @@ class M3UImporterScreen(Screen):
 		
 		boxepgimport = []
 		
-		if self.propertys.has_key("boxepgimport"):
+		if "boxepgimport" in self.propertys:
 			boxepgimport = self.propertys["boxepgimport"]
 
 		self.GetAllServices(boxepgimport)
@@ -169,12 +169,12 @@ class M3UImporterScreen(Screen):
 		
 		groupmappings = {}
 		
-		if self.propertys.has_key("groupmappings"):
+		if "groupmappings" in self.propertys:
 			groupmappings = self.propertys["groupmappings"]
 
 
 		moviegroupmappings = {}
-		if self.propertys.has_key("moviegroupmappings"):
+		if "moviegroupmappings" in self.propertys:
 			moviegroupmappings = self.propertys["moviegroupmappings"]
 		
 		bqns = []
@@ -185,7 +185,7 @@ class M3UImporterScreen(Screen):
 				bqs[v].append("#NAME %s" % v)
 
 		othermoviesbqname = ""
-		if self.propertys.has_key("othermoviesbqname"):
+		if "othermoviesbqname" in self.propertys:
 			othermoviesbqname = self.propertys["othermoviesbqname"]
 		
 		bqns = []
@@ -203,23 +203,23 @@ class M3UImporterScreen(Screen):
 
 		exclude = {}
 		
-		if self.propertys.has_key("exclude"):
+		if "exclude" in self.propertys:
 			exclude = self.propertys["exclude"]
 
 		seriesbqname = ""
 		othersbqname = ""
 		
-		if self.propertys.has_key("othermoviesbqname"):
+		if "othermoviesbqname" in self.propertys:
 			othermoviesbqname = self.propertys["othermoviesbqname"]
 
-		if self.propertys.has_key("seriesbqname"):
+		if "seriesbqname" in self.propertys:
 			seriesbqname = self.propertys["seriesbqname"]
 		
-		if self.propertys.has_key("othersbqname"):
+		if "othersbqname" in self.propertys:
 			othersbqname = self.propertys["othersbqname"]
 			
 		importepgmappings = {}
-		if self.propertys.has_key("importepgmappings"):
+		if "importepgmappings" in self.propertys:
 			importepgmappings = self.propertys["importepgmappings"]
 
 		series.append("#NAME %s" % seriesbqname)
@@ -280,13 +280,13 @@ class M3UImporterScreen(Screen):
 					"l" : ll,
 					"n" : nnn
 				}
-				if moviegroupmappings.has_key(g):
+				if g in moviegroupmappings:
 					gk = moviegroupmappings[g]
 					mbqns[gk].append(md)
 				elif othermoviesbqname != "":
 					mbqns[othermoviesbqname].append(md)
-			elif groupmappings.has_key(g):
-				if exclude.has_key(g):
+			elif g in groupmappings:
+				if g in exclude:
 					for exx in exclude[g]:
 						ll = len(exx) - 1 
 						if exx == n:
@@ -297,7 +297,7 @@ class M3UImporterScreen(Screen):
 								n = ""
 								continue
 						
-				if exclude.has_key("All"):
+				if "All" in exclude:
 					for exx in exclude["All"]:
 						if exx == n:
 							n = ""
@@ -308,7 +308,7 @@ class M3UImporterScreen(Screen):
 					continue
 
 				l = "#SERVICE 4097:0:1:%s:0:0:0:0:0:0:%s" % (str(pos), ln.replace(':','%3a'))
-				if importepgmappings.has_key(g):
+				if g in importepgmappings:
 					ne = "%s.%s" % (nn.replace(" HD","").replace(" ",""), importepgmappings[g])
 					ll = "4097:0:1:%s:0:0:0:0:0:0:%s" % (str(pos), ln.replace(':','%3a'))
 					epgrefs[ll] = ne
@@ -470,14 +470,14 @@ class M3UImporterScreen(Screen):
 					for s in _services['services']:
 						if "%" not in s["servicereference"]:
 							sn = s["servicename"]
-							if not self.boxchannels.has_key(sn):
+							if sn not in self.boxchannels:
 								self.boxchannels[sn] = s["servicereference"]
 		except ImportError:
 			print("OpenWebif Plugin not found")
 			return
 		
 	def getRef(self, name):
-		if self.boxchannels.has_key(name):
+		if name in self.boxchannels:
 			return self.boxchannels[name]
 		return ""
 
