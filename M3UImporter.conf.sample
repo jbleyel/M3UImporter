@@ -1,0 +1,69 @@
+{
+  "othermoviesbqname" : "",
+  "moviegroupmappings" : {
+    "VOD Series United Kingdom" : "IPTV_Movie_UK",
+    "VOD Germany" : "IPTV_Movie_DE",
+    "VOD United Kingdom" : "IPTV_Movie_UK"
+  },
+  "importepgmappings" : {
+    "Austria" : "at",
+    "Switzerland" : "ch",
+    "United Kingdom" : "uk"
+  },
+  "othersbqname" : "",
+  "exclude" : {
+    "Switzerland" : [
+      "MySports *"
+    ],
+    "VIP Sports" : [
+      "RUSH Sports *",
+      "Flow Sports *",
+      "KSA Sport 2 FHD ARB"
+    ],
+    "Germany" : [
+      "VOX*",
+      "RTL*",
+      "ProSieben*",
+      "Sky Movies BoxOffice *",
+      "Telekom Fussball *",
+      "==========*",
+      "MDR *",
+      "Elit Select *",
+      "Film Club *",
+      "Eagle Cinema *"
+    ],
+    "UHD 4K" : [
+      "Sky PrimaFila *"
+    ],
+    "United States" : [
+      "Fox Sports *",
+      "NFL *",
+      "PAC-12 *",
+      "MSNBC HD (Web) US",
+      "C-Span 1 US"
+    ],
+    "United Kingdom" : [
+      "BT Sport *",
+      "Sky Sports *",
+      "Rangers FC TV FHD UK",
+      "Eurosport*",
+      "Nickelodeon*"
+    ]
+  },
+  "groupmappings" : {
+    "Austria" : "IPTV_Live_DE",
+    "United States" : "IPTV_Live_US",
+    "United Kingdom VIP" : "IPTV_Live_UK",
+    "Germany" : "IPTV_Live_DE",
+    "United Kingdom" : "IPTV_Live_UK",
+    "US VIP" : "IPTV_Live_US",
+    "UHD 4K" : "IPTV_Live_DE",
+    "Switzerland" : "IPTV_Live_DE"
+  },
+  "m3ufile" : "\/tmp\/channels.m3u",
+  "seriesbqname" : "",
+  "boxepgimport" : [
+    "IPTV_1_EPG",
+    "IPTV_2_EPG"
+  ]
+}
