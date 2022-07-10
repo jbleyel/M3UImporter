@@ -19,6 +19,7 @@ You should have received a copy of the GNU General Public License
 
 
 import json
+from re import sub
 from enigma import eServiceReference, eServiceCenter, eDVBDB
 
 from Components.ActionMap import ActionMap
@@ -257,6 +258,7 @@ class M3UImporterScreen(Screen):
 				nn = n[:-3]
 
 			nn = nn.replace(' FHD',' HD')
+			nn = self.channelMappings(nn)
 
 			l = "#SERVICE 4097:0:1:0:0:0:0:0:0:0:%s" % ln.replace(':','%3a')
 
@@ -480,6 +482,11 @@ class M3UImporterScreen(Screen):
 		if name in self.boxchannels:
 			return self.boxchannels[name]
 		return ""
+
+	def channelMappings(self, name):
+		name = sub("ARD.*?","DAS ERSTE.*?",name)
+		name = sub("SAT 1.*?","SAT.1.*?",name)
+		return name
 
 
 def main(session, **kwargs):
